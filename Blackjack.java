@@ -10,6 +10,9 @@ public class Blackjack{
    public static void main(){
        Hand playerHand = new Hand();
        Hand cpuHand = new Hand();
+       while (cpuHand.getTotal() < 15){
+           cpuHand.hit();
+        }
        System.out.println("You start with a total of " + playerHand.getTotal());
        boolean stop = false;
        while (stop == false){
@@ -22,11 +25,29 @@ public class Blackjack{
                 System.out.println("Bust! You had " + playerHand.getTotal());
                 stop = true;
             }
+            else if (playerHand.getTotal() == 21){
+                if (playerHand.getTotal() > cpuHand.getTotal()){
+                    System.out.println("You win! Your hand of " + playerHand.getTotal() + " beat the CPU's total of " + cpuHand.getTotal());
+                }
+                else {
+                    System.out.println("You tied at a total of " + playerHand.getTotal());
+                }
+            stop = true;
+            }
             else {
                 System.out.println("Your new total is " + playerHand.getTotal());
             }
         }
         else if (choice.equals("s")){
+            if (playerHand.getTotal() > cpuHand.getTotal()){
+                System.out.println("You win! Your hand of " + playerHand.getTotal() + " beat the CPU's total of " + cpuHand.getTotal());
+            }
+            else if (playerHand.getTotal() < cpuHand.getTotal()){
+                System.out.println("You lose. Your hand of " + playerHand.getTotal() + " lost to the CPU's total of " + cpuHand.getTotal());
+            }
+            else {
+                System.out.println("You tied at a total of " + playerHand.getTotal());
+            }
             stop = true;
         }
         else {
